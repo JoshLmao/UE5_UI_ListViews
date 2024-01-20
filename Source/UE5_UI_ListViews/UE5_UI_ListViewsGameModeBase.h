@@ -14,4 +14,6 @@ class UE5_UI_LISTVIEWS_API AUE5_UI_ListViewsGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+public:
+	AUE5_UI_ListViewsGameModeBase();
 };

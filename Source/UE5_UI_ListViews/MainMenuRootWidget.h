@@ -14,4 +14,14 @@ class UMainMenuRootWidget : public UUserWidget, public IAnimatedVisibilityInterf
 
 public:
 	class UUserWidget* AnimatedVisibility_GetWidget();
+
+protected:
+	void NativePreConstruct() override;
+
+protected:
+	UPROPERTY(Transient, ScriptReadWrite, Meta = (BindWidgetAnimOptional))
+	class UWidgetAnimation* AnimatedVisibility_Appear;
+
+	UPROPERTY(Transient, ScriptReadWrite, Meta = (BindWidgetAnimOptional))
+	class UWidgetAnimation* AnimatedVisibility_Disappear;
 };

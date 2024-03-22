@@ -9,10 +9,22 @@ void IAnimatedVisibilityInterface::AnimatedVisibility_NativePreConstruct(UWidget
 	if (Appear != nullptr)
 	{
 		TransitionAppear = Appear;
+
+		AppearStartedEvent.BindUFunction(AnimatedVisibility_GetWidget(), GET_FUNCTION_NAME_CHECKED(IAnimatedVisibilityInterface, OnAnimatedVisibility_TransitionAppearStarted));
+		AnimatedVisibility_GetWidget()->BindToAnimationStarted(TransitionAppear.Get(), AppearStartedEvent);
+
+		AppearFinishedEvent.BindUFunction(AnimatedVisibility_GetWidget(), GET_FUNCTION_NAME_CHECKED(IAnimatedVisibilityInterface, OnAnimatedVisibility_TransitionAppearFinished));
+		AnimatedVisibility_GetWidget()->BindToAnimationFinished(TransitionAppear.Get(), AppearFinishedEvent);
 	}
 	if (Disappear != nullptr)
 	{
 		TransitionDisappear = Disappear;
+
+		DisappearStartedEvent.BindUFunction(AnimatedVisibility_GetWidget(), GET_FUNCTION_NAME_CHECKED(IAnimatedVisibilityInterface, OnAnimatedVisibility_TransitionDisappearStarted));
+		AnimatedVisibility_GetWidget()->BindToAnimationStarted(TransitionDisappear.Get(), DisappearStartedEvent);
+
+		DisappearFinishedEvent.BindUFunction(AnimatedVisibility_GetWidget(), GET_FUNCTION_NAME_CHECKED(IAnimatedVisibilityInterface, OnAnimatedVisibility_TransitionDisappearFinished));
+		AnimatedVisibility_GetWidget()->BindToAnimationFinished(TransitionDisappear.Get(), DisappearFinishedEvent);
 	}
 }
 
@@ -73,6 +85,22 @@ void IAnimatedVisibilityInterface::AnimatedVisibility_SetVisibility(const bool S
 	{
 		TryPlayAnimation(TransitionDisappear.Get(), false);
 	}
+}
+
+void IAnimatedVisibilityInterface::OnAnimatedVisibility_TransitionAppearStarted()
+{
+}
+
+void IAnimatedVisibilityInterface::OnAnimatedVisibility_TransitionAppearFinished()
+{
+}
+
+void IAnimatedVisibilityInterface::OnAnimatedVisibility_TransitionDisappearStarted()
+{
+}
+
+void IAnimatedVisibilityInterface::OnAnimatedVisibility_TransitionDisappearFinished()
+{
 }
 
 void IAnimatedVisibilityInterface::TryPlayAnimation(UWidgetAnimation* AnimationToPlay, const bool VisibilityFlag)

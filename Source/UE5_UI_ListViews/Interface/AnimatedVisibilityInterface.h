@@ -1,7 +1,10 @@
 #pragma once
 
 #include <CoreMinimal.h>
+
+#include <Animation/WidgetAnimationEvents.h>
 #include <CoreUObject/Public/UObject/Interface.h>
+#include <UMG/Public/Components/SlateWrapperTypes.h>
 
 #include "AnimatedVisibilityInterface.generated.h"
 
@@ -25,10 +28,25 @@ public:
 
 	void AnimatedVisibility_SetVisibility(const bool ShouldBeVisible);
 
+protected:
+	UFUNCTION(meta = (BlueprintProtected = true))
+	virtual void OnAnimatedVisibility_TransitionAppearStarted();
+	UFUNCTION(meta = (BlueprintProtected = true))
+	virtual void OnAnimatedVisibility_TransitionAppearFinished();
+	UFUNCTION(meta = (BlueprintProtected = true))
+	virtual void OnAnimatedVisibility_TransitionDisappearStarted();
+	UFUNCTION(meta = (BlueprintProtected = true))
+	virtual void OnAnimatedVisibility_TransitionDisappearFinished();
+
 private:
 	void TryPlayAnimation(UWidgetAnimation* AnimationToPlay, const bool VisibilityFlag);
 	void SetVisibilityInternal(const bool VisibilityFlag);
 
 	TWeakObjectPtr<class UWidgetAnimation> TransitionAppear;
 	TWeakObjectPtr<class UWidgetAnimation> TransitionDisappear;
+	
+	FWidgetAnimationDynamicEvent AppearStartedEvent;
+	FWidgetAnimationDynamicEvent AppearFinishedEvent;
+	FWidgetAnimationDynamicEvent DisappearStartedEvent;
+	FWidgetAnimationDynamicEvent DisappearFinishedEvent;
 };

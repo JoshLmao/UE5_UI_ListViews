@@ -1,13 +1,14 @@
-#include "MainMenuRootWidget.h"
+#include "MyUserWidgetBase.h"
 
-UUserWidget* UMainMenuRootWidget::AnimatedVisibility_GetWidget()
+UUserWidget* UMyUserWidgetBase::AnimatedVisibility_GetWidget()
 {
     return this;
 }
 
-void UMainMenuRootWidget::NativePreConstruct()
+void UMyUserWidgetBase::NativePreConstruct()
 {
     Super::NativePreConstruct();
 
     AnimatedVisibility_NativePreConstruct(AnimatedVisibility_Appear, AnimatedVisibility_Disappear);
 }
+

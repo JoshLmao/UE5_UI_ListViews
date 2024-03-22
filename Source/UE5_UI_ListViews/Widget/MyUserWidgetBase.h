@@ -1,14 +1,14 @@
 #pragma once
 
 #include <CoreMinimal.h>
-#include "Blueprint/UserWidget.h"
+#include <Blueprint/UserWidget.h>
 
-#include "Interface/AnimatedVisibilityInterface.h"
+#include "UE5_UI_ListViews/Interface/AnimatedVisibilityInterface.h"
 
-#include "MainMenuRootWidget.generated.h"
+#include "MyUserWidgetBase.generated.h"
 
 UCLASS(Abstract)
-class UMainMenuRootWidget : public UUserWidget, public IAnimatedVisibilityInterface
+class UMyUserWidgetBase : public UUserWidget, public IAnimatedVisibilityInterface
 {
 	GENERATED_BODY()
 

@@ -1,7 +1,8 @@
 #include "AnimatedVisibilityInterface.h"
 
 #include <UMG/Public/Animation/WidgetAnimation.h>
-#include <Blueprint/UserWidget.h>
+#include <UMG/Public/Blueprint/UserWidget.h>
+#include <UMG/Public/Blueprint/WidgetTree.h>
 
 void IAnimatedVisibilityInterface::AnimatedVisibility_NativePreConstruct(UWidgetAnimation* Appear, UWidgetAnimation* Disappear)
 {
@@ -19,6 +20,16 @@ void IAnimatedVisibilityInterface::AnimatedVisibility_DoAppear()
 {
 	UE_LOG(LogTemp, Log, TEXT("Widget %s: AnimatedVisibility_DoAppear()"), *AnimatedVisibility_GetWidget()->GetName());
 
+	AnimatedVisibility_GetWidget()->WidgetTree->ForEachWidget(
+		[](UWidget* Widget)
+		{
+			if (Widget->Implements<UAnimatedVisibilityInterface>())
+			{
+				auto* AnimatedVisibilityWidget = Cast<IAnimatedVisibilityInterface>(Widget);
+				AnimatedVisibilityWidget->AnimatedVisibility_DoAppear();
+			}
+		});
+
 	if (TransitionAppear.Get())
 	{
 		AnimatedVisibility_SetVisibility(true);
@@ -28,6 +39,16 @@ void IAnimatedVisibilityInterface::AnimatedVisibility_DoAppear()
 void IAnimatedVisibilityInterface::AnimatedVisibility_DoDisappear()
 {
 	UE_LOG(LogTemp, Log, TEXT("Widget %s: AnimatedVisibility_DoDisappear()"), *AnimatedVisibility_GetWidget()->GetName());
+
+	AnimatedVisibility_GetWidget()->WidgetTree->ForEachWidget(
+		[](UWidget* Widget)
+		{
+			if (Widget->Implements<UAnimatedVisibilityInterface>())
+			{
+				auto* AnimatedVisibilityWidget = Cast<IAnimatedVisibilityInterface>(Widget);
+				AnimatedVisibilityWidget->AnimatedVisibility_DoDisappear();
+			}
+		});
 
 	if (TransitionDisappear.Get())
 	{

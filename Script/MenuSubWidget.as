@@ -1,5 +1,5 @@
 UCLASS(Abstract)
-class UAS_MenuSubWidget : UUserWidget
+class UAS_MenuSubWidget : UMainMenuRootWidget
 {
     
 }

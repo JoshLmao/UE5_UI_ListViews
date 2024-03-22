@@ -21,4 +21,10 @@ protected:
 	TSubclassOf<class UUserWidget> MainMenuRootWidget;
 
 	class UUserWidget* MainMenuUWInstance;
+
+private:
+	UFUNCTION()
+	void OnShowTimeFinished();
+
+	FTimerHandle ShowTimeTimerHandle;
 };

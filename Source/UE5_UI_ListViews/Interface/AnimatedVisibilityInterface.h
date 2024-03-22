@@ -23,7 +23,12 @@ public:
 
 	virtual class UUserWidget* AnimatedVisibility_GetWidget() = 0; // pure virtual
 
+	void AnimatedVisibility_SetVisibility(const bool ShouldBeVisible);
+
 private:
+	void TryPlayAnimation(UWidgetAnimation* AnimationToPlay, const bool VisibilityFlag);
+	void SetVisibilityInternal(const bool VisibilityFlag);
+
 	TWeakObjectPtr<class UWidgetAnimation> TransitionAppear;
 	TWeakObjectPtr<class UWidgetAnimation> TransitionDisappear;
 };

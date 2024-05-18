@@ -1,4 +1,4 @@
-UCLASS()
+UCLASS(Abstract)
 class UAS_MainMenuRootWidget : UUserWidget
 {
 	UFUNCTION(BlueprintOverride)
@@ -8,6 +8,7 @@ class UAS_MainMenuRootWidget : UUserWidget
 		TArray<UObject> AllData;
 		AllData.Add(MainMenu::GenerateProp(FText::FromString("Play"), this, n"OnPlayClicked"));
 		AllData.Add(MainMenu::GenerateProp(FText::FromString("Matchmake"), this, n"OnMatchmakeClicked"));
+		AllData.Add(MainMenu::GenerateProp(FText::FromString("Settings"), this, n"OnSettingsClicked"));
 		AllData.Add(MainMenu::GenerateProp(FText::FromString("Quit to Desktop"), this, n"OnQuitClicked"));
 
 		ButtonsListView.SetListItems(AllData);
@@ -23,6 +24,13 @@ class UAS_MainMenuRootWidget : UUserWidget
 	void OnMatchmakeClicked(UObject Item)
 	{
 		Print("OnMatchmakeClicked");
+	}
+
+	UFUNCTION()
+	void OnSettingsClicked(UObject Item)
+	{
+		Print("OnSettingsClicked");
+		Cast<AMainMenuHUD>(GetOwningPlayer().GetHUD()).OpenWidget(FGameplayTag::RequestGameplayTag(n"UI.MainMenu.Settings"));
 	}
 
 	UFUNCTION()

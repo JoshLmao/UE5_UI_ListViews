@@ -6,14 +6,19 @@ void AMainMenuHUD::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (MainMenuRootWidget && !MainMenuUWInstance)
-	{
-		MainMenuUWInstance = CreateWidget<UUserWidget>(GetOwningPlayerController(), MainMenuRootWidget);
-		if (!MainMenuUWInstance)
-		{
-			return;
-		}
+	// Open our landing menu at start
+	OpenWidget(FGameplayTag::RequestGameplayTag("UI.MainMenu.Landing"));
+}
 
-		MainMenuUWInstance->AddToViewport();
+void AMainMenuHUD::OpenWidget(FGameplayTag WidgetTag)
+{
+	checkf(UIConfig.Contains(WidgetTag), TEXT("Doesnt have tag!"));
+
+	if (IsValid(ActiveWidget))
+	{
+		ActiveWidget->RemoveFromViewport();
 	}
+
+	ActiveWidget = CreateWidget<UUserWidget>(GetOwningPlayerController(), UIConfig[WidgetTag]);
+	ActiveWidget->AddToViewport();
 }

@@ -2,6 +2,7 @@
 
 #include <CoreMinimal.h>
 #include <GameFramework/HUD.h>
+#include <GameplayTagContainer.h>
 
 #include "MainMenuHUD.generated.h"
 
@@ -13,8 +14,13 @@ class UE5_UI_LISTVIEWS_API AMainMenuHUD : public AHUD
 public:
 	void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TSubclassOf<class UUserWidget> MainMenuRootWidget;
+	UFUNCTION(ScriptCallable)
+	void OpenWidget(FGameplayTag WidgetTag);
 
-	class UUserWidget* MainMenuUWInstance;
+protected:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TMap<FGameplayTag, TSubclassOf<UUserWidget>> UIConfig;
+
+private:
+	class UUserWidget* ActiveWidget;
 };

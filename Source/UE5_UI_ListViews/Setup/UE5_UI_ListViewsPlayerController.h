@@ -16,9 +16,4 @@ class UE5_UI_LISTVIEWS_API AUE5_UI_ListViewsPlayerController : public APlayerCon
 	
 protected:
 	void BeginPlay() override;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TSubclassOf<class UUserWidget> MainMenuRootWidget;
-
-	class UUserWidget* MainMenuUWInstance;
 };

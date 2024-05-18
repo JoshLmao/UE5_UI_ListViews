@@ -14,19 +14,19 @@ class UAS_MainMenuRootWidget : UUserWidget
 	}
 
 	UFUNCTION()
-	void OnPlayClicked(UObject Obj)
+	void OnPlayClicked(UObject Item)
 	{
 		Print("OnPlayClicked");
 	}
 
 	UFUNCTION()
-	void OnMatchmakeClicked(UObject Obj)
+	void OnMatchmakeClicked(UObject Item)
 	{
 		Print("OnMatchmakeClicked");
 	}
 
 	UFUNCTION()
-	void OnQuitClicked(UObject Obj)
+	void OnQuitClicked(UObject Item)
 	{
 		Print("OnQuitClicked");
 	}

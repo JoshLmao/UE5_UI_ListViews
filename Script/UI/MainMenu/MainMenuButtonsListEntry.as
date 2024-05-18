@@ -10,7 +10,7 @@ class UAS_MainMenuButtonsListEntry : UAS_MyListEntryBase
 			return;
 		}
 
-		// TODO: Use UUserObjectLIstEntryLibrary::GetListItemObject to get prop instead of caching it?
+		// TODO: Use UUserObjectListEntryLibrary::GetListItemObject to get prop instead of caching it?
 		Prop = ExpectedProp;
 
 		TextBlock.SetText(ExpectedProp.ButtonText);

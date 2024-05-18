@@ -1,7 +1,6 @@
 UCLASS(Abstract)
 class UAS_MainMenuButtonsListEntry : UAS_MyListEntryBase
 {
-
 	UFUNCTION(BlueprintOverride)
 	void NativeOnListItemObjectSet(UObject ListItemObject)
 	{
@@ -11,7 +10,23 @@ class UAS_MainMenuButtonsListEntry : UAS_MyListEntryBase
 			return;
 		}
 
+		// TODO: Use UUserObjectLIstEntryLibrary::GetListItemObject to get prop instead of caching it?
+		Prop = ExpectedProp;
+
 		TextBlock.SetText(ExpectedProp.ButtonText);
+	}
+
+	UFUNCTION(BlueprintOverride)
+	void OnInitialized()
+	{
+		Button.OnClicked.AddUFunction(this, n"OnEntryButtonClicked");
+	}
+
+	UFUNCTION()
+	void OnEntryButtonClicked()
+	{
+		Print(GetName() + " clicked");
+		Prop.EntryClickedDelegate.Broadcast(Prop);
 	}
 
 	UPROPERTY(BindWidget)
@@ -19,4 +34,6 @@ class UAS_MainMenuButtonsListEntry : UAS_MyListEntryBase
 
 	UPROPERTY(BindWidget)
 	private UTextBlock TextBlock;
+
+	private UAS_MainMenuListProp Prop;
 }

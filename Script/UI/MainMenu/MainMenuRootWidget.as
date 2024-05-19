@@ -29,8 +29,8 @@ class UAS_MainMenuRootWidget : UUserWidget
 	UFUNCTION()
 	void OnSettingsClicked(UObject Item)
 	{
-		Print("OnSettingsClicked");
-		Cast<AMainMenuHUD>(GetOwningPlayer().GetHUD()).OpenWidget(FGameplayTag::RequestGameplayTag(n"UI.MainMenu.Settings"));
+		auto HUDControl = Cast<AMainMenuHUD>(GetOwningPlayer().GetHUD());
+		HUDControl.OpenWidget(FGameplayTag::RequestGameplayTag(n"UI.MainMenu.Settings"));
 	}
 
 	UFUNCTION()

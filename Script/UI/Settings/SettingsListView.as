@@ -18,6 +18,12 @@ class UAS_SettingsListView : UAS_MyListViewBase
 			return CarouselListEntryClass;
 		}
 
+		auto IsToggle = Cast<UAS_Settings_ListEntryData_Toggle>(Item);
+		if (IsValid(IsToggle))
+		{
+			return ToggleListEntryClass;
+		}
+
 		return UnknownListEntryClass; // Given list item doesn't have a configured ListEntry
 	}
 
@@ -30,4 +36,7 @@ class UAS_SettingsListView : UAS_MyListViewBase
 
 	UPROPERTY(EditDefaultsOnly)
 	private TSubclassOf<UUserWidget> CarouselListEntryClass;
+
+	UPROPERTY(EditDefaultsOnly)
+	private TSubclassOf<UUserWidget> ToggleListEntryClass;
 }

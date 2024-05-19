@@ -6,6 +6,10 @@ void AMainMenuHUD::BeginPlay()
 {
 	Super::BeginPlay();
 
+	FInputModeUIOnly InputModeData;
+	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::LockInFullscreen);
+	GetOwningPlayerController()->SetInputMode(InputModeData);
+
 	// Open our landing menu at start
 	OpenWidget(FGameplayTag::RequestGameplayTag("UI.MainMenu.Landing"));
 }

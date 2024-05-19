@@ -5,4 +5,5 @@
 UCLASS(Abstract)
 class UAS_SettingsListEnty_Title : UAS_SettingsListEntry_Base
 {
+	default bIsFocusable = false;
 }

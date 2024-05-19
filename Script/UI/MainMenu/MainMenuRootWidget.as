@@ -14,6 +14,12 @@ class UAS_MainMenuRootWidget : UUserWidget
 		ButtonsListView.SetListItems(AllData);
 	}
 
+	UFUNCTION(BlueprintOverride)
+	FEventReply OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent)
+	{
+		return FEventReply::Handled().SetUserFocus(ButtonsListView);
+	}
+
 	UFUNCTION()
 	void OnPlayClicked(UObject Item)
 	{
@@ -41,4 +47,6 @@ class UAS_MainMenuRootWidget : UUserWidget
 
 	UPROPERTY(BindWidget)
 	private UAS_MainMenuButtonsListView ButtonsListView;
+
+	default bIsFocusable = true;
 }

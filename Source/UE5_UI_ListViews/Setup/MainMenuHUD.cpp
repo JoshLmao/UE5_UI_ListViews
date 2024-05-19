@@ -25,4 +25,5 @@ void AMainMenuHUD::OpenWidget(FGameplayTag WidgetTag)
 
 	ActiveWidget = CreateWidget<UUserWidget>(GetOwningPlayerController(), UIConfig[WidgetTag]);
 	ActiveWidget->AddToViewport();
+	ActiveWidget->SetUserFocus(GetOwningPlayerController());
 }

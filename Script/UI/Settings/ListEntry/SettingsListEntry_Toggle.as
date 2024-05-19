@@ -1,13 +1,6 @@
 UCLASS(Abstract)
 class UAS_SettingsListEntry_Toggle : UAS_SettingsListEntry_Base
 {
-
-	UPROPERTY(BindWidget)
-	private UButton ToggleButton;
-
-	UPROPERTY(BindWidget)
-	private UTextBlock StatusTextBlock;
-
 	UFUNCTION(BlueprintOverride)
 	void OnInitialized()
 	{
@@ -28,6 +21,12 @@ class UAS_SettingsListEntry_Toggle : UAS_SettingsListEntry_Base
 		SetStatus(ToggleData.GetToggleStatus());
 	}
 
+	UFUNCTION(BlueprintOverride)
+	FEventReply OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent)
+	{
+		return FEventReply::Handled().SetUserFocus(ToggleButton, InFocusEvent.GetCause());
+	}
+
 	UFUNCTION()
 	private void OnToggleButtonClicked()
 	{
@@ -41,4 +40,10 @@ class UAS_SettingsListEntry_Toggle : UAS_SettingsListEntry_Base
 	}
 
 	private bool CurrentStatus;
+
+	UPROPERTY(BindWidget)
+	private UButton ToggleButton;
+
+	UPROPERTY(BindWidget)
+	private UTextBlock StatusTextBlock;
 }

@@ -28,6 +28,12 @@ class UAS_SettingsListEntry_Carousel : UAS_SettingsListEntry_Base
 		UpdateActiveText();
 	}
 
+	UFUNCTION(BlueprintOverride)
+	FEventReply OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent)
+	{
+		return FEventReply::Handled().SetUserFocus(this, InFocusEvent.GetCause());
+	}
+
 	UFUNCTION()
 	private void OnLeftButtonClicked()
 	{

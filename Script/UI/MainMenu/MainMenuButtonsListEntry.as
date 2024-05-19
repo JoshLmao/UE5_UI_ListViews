@@ -23,7 +23,7 @@ class UAS_MainMenuButtonsListEntry : UAS_MyListEntryBase
 	}
 
 	UFUNCTION()
-	void OnEntryButtonClicked()
+	private void OnEntryButtonClicked()
 	{
 		Print(GetName() + " clicked");
 		Prop.EntryClickedDelegate.Broadcast(Prop);

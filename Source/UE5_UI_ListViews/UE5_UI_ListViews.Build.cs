@@ -10,12 +10,14 @@ public class UE5_UI_ListViews : ModuleRules
 
         PublicDependencyModuleNames.AddRange(new string[] 
         {
+            "CommonGame",
             "Core",
             "CoreUObject",
             "Engine",
             "GameplayTags",
             "InputCore",
-            "UMG"
+            "ModularGameplayActors",
+            "UMG",
         });
 
         // Uncomment if you are using Slate UI

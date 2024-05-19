@@ -6,4 +6,6 @@
 void AUE5_UI_ListViewsPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+
+	
 }

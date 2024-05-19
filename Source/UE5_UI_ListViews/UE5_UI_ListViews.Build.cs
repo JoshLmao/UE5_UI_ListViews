@@ -11,6 +11,7 @@ public class UE5_UI_ListViews : ModuleRules
         PublicDependencyModuleNames.AddRange(new string[] 
         {
             "CommonGame",
+            "CommonUI",
             "Core",
             "CoreUObject",
             "Engine",

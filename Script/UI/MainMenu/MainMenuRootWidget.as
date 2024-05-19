@@ -1,5 +1,5 @@
 UCLASS(Abstract)
-class UAS_MainMenuRootWidget : UUserWidget
+class UAS_MainMenuRootWidget : UCommonActivatableWidget
 {
 	UFUNCTION(BlueprintOverride)
 	void Construct()

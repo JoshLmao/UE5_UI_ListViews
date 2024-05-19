@@ -19,8 +19,8 @@ public:
 
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TMap<FGameplayTag, TSubclassOf<UUserWidget>> UIConfig;
+	TMap<FGameplayTag, TSubclassOf<class UCommonActivatableWidget>> UIConfig;
 
 private:
-	class UUserWidget* ActiveWidget;
+	class UCommonActivatableWidget* ActiveActivatable;
 };

@@ -1,5 +1,5 @@
 UCLASS(Abstract)
-class UAS_SettingsRootWidget : UUserWidget
+class UAS_SettingsRootWidget : UCommonActivatableWidget
 {
 	UFUNCTION(BlueprintOverride)
 	void Construct()

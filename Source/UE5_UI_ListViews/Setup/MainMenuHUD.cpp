@@ -2,6 +2,9 @@
 
 #include <Blueprint/UserWidget.h>
 
+#include "CommonActivatableWidget.h"
+#include "PrimaryGameLayout.h"
+
 void AMainMenuHUD::BeginPlay()
 {
 	Super::BeginPlay();
@@ -18,12 +21,16 @@ void AMainMenuHUD::OpenWidget(FGameplayTag WidgetTag)
 {
 	checkf(UIConfig.Contains(WidgetTag), TEXT("Doesnt have tag!"));
 
-	if (IsValid(ActiveWidget))
+	auto OwningLocalPlayer = GetOwningPlayerController()->GetLocalPlayer();
+	if (UPrimaryGameLayout* RootLayout = UPrimaryGameLayout::GetPrimaryGameLayout(OwningLocalPlayer))
 	{
-		ActiveWidget->RemoveFromViewport();
-	}
+		if (IsValid(ActiveActivatable))
+		{
+			RootLayout->FindAndRemoveWidgetFromLayer(ActiveActivatable);
+		}
 
-	ActiveWidget = CreateWidget<UUserWidget>(GetOwningPlayerController(), UIConfig[WidgetTag]);
-	ActiveWidget->AddToViewport();
-	ActiveWidget->SetUserFocus(GetOwningPlayerController());
+		auto Layer = FGameplayTag::RequestGameplayTag(TEXT("UI.Layer.Menu"));
+		ActiveActivatable = RootLayout->PushWidgetToLayerStack(Layer, UIConfig[WidgetTag]);
+		ActiveActivatable->SetUserFocus(GetOwningPlayerController());
+	}
 }

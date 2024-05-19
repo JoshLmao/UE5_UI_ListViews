@@ -1,27 +1,8 @@
+/*
+	Only using base properties in `UAS_Settings_ListEntryData_Base` so empty class.
+	In theory, this isnt needed? As WBP can inherit `UAS_SettingsListEntry_Base` but doing it for structure
+*/
 UCLASS(Abstract)
-class UAS_SettingsListEnty_Title : UAS_MyListEntryBase
+class UAS_SettingsListEnty_Title : UAS_SettingsListEntry_Base
 {
-	UFUNCTION(BlueprintOverride)
-	void PreConstruct(bool IsDesignTime)
-	{
-		if (IsDesignTime)
-		{
-			TitleTextBlock.SetText(FText::FromString("A List Entry Title"));
-		}
-	}
-
-	UFUNCTION(BlueprintOverride)
-	void NativeOnListItemObjectSet(UObject ListItemObject)
-	{
-		auto LisEntryTitle = Cast<UAS_ListEntryData_Title>(ListItemObject);
-		if (!IsValid(LisEntryTitle))
-		{
-			return;
-		}
-
-		TitleTextBlock.SetText(LisEntryTitle.GetTitle());
-	}
-
-	UPROPERTY(BindWidget)
-	private UTextBlock TitleTextBlock;
 }

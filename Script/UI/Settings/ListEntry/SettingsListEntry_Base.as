@@ -38,7 +38,7 @@ class UAS_SettingsListEntry_Base : UMyListEntryBase
 		return FEventReply::Unhandled();
 	}
 
-	UUserWidget Settings_GetFocusTarget()
+	UWidget Settings_GetFocusTarget()
 	{
 		return nullptr;
 	}

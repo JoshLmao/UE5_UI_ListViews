@@ -34,10 +34,9 @@ class UAS_SettingsListEntry_Carousel : UAS_SettingsListEntry_Base
 		Rotator.SetSelectedItem(0);
 	}
 
-	UFUNCTION(BlueprintOverride)
-	FEventReply OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent)
+	UWidget Settings_GetFocusTarget() override
 	{
-		return FEventReply::Handled().SetUserFocus(this, InFocusEvent.GetCause());
+		return Rotator;
 	}
 
 	UFUNCTION()

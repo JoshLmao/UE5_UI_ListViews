@@ -6,6 +6,15 @@ UCLASS(Abstract)
 class UAS_SettingsListEntry_Carousel : UAS_SettingsListEntry_Base
 {
 	UFUNCTION(BlueprintOverride)
+	void PreConstruct(bool IsDesignTime)
+	{
+		Super::PreConstruct(IsDesignTime);
+
+		// Set initial opacity for OnHover animation starting value
+		SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 0.5f));
+	}
+
+	UFUNCTION(BlueprintOverride)
 	void OnInitialized()
 	{
 		LeftButton.OnClicked.AddUFunction(this, n"OnLeftButtonClicked");

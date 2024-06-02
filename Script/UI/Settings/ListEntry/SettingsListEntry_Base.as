@@ -30,6 +30,7 @@ class UAS_SettingsListEntry_Base : UMyListEntryBase
 	UFUNCTION(BlueprintOverride)
 	FEventReply OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent)
 	{
+		// Get child's UWidget to direct focus onto
 		auto UserWidgetToFocus = Settings_GetFocusTarget();
 		if (IsValid(UserWidgetToFocus))
 		{
@@ -40,9 +41,37 @@ class UAS_SettingsListEntry_Base : UMyListEntryBase
 
 	UWidget Settings_GetFocusTarget()
 	{
+		// Acting as a virtual, each ListEntry should override and specify what to focus
 		return nullptr;
+	}
+
+	UFUNCTION(BlueprintOverride)
+	void OnMouseEnter(FGeometry MyGeometry, FPointerEvent MouseEvent)
+	{
+		if (IsValid(OnHover))
+		{
+			PlayAnimation(OnHover);
+		}
+	}
+
+	UFUNCTION(BlueprintOverride)
+	void OnMouseLeave(FPointerEvent MouseEvent)
+	{
+		if (IsValid(OnHover))
+		{
+			PlayAnimationReverse(OnHover);
+		}
+	}
+
+	UFUNCTION(BlueprintOverride)
+	void NativeOnEntryReleased()
+	{
+		StopAllAnimations();
 	}
 
 	UPROPERTY(BindWidget)
 	private UTextBlock TitleTextBlock;
+
+	UPROPERTY(Transient, meta = (BindWidgetAnimOptional))
+	private UWidgetAnimation OnHover;
 }

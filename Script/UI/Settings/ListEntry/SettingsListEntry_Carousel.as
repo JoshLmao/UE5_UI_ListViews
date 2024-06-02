@@ -6,6 +6,12 @@ UCLASS(Abstract)
 class UAS_SettingsListEntry_Carousel : UAS_SettingsListEntry_Base
 {
 	UFUNCTION(BlueprintOverride)
+	void PreConstruct(bool IsDesignTime)
+	{
+		Super::PreConstruct(IsDesignTime);
+	}
+
+	UFUNCTION(BlueprintOverride)
 	void OnInitialized()
 	{
 		LeftButton.OnClicked.AddUFunction(this, n"OnLeftButtonClicked");
@@ -24,8 +30,8 @@ class UAS_SettingsListEntry_Carousel : UAS_SettingsListEntry_Base
 		}
 
 		AllOptions = CarouselData.GetOptions();
-		ActiveOption = 0;
-		UpdateActiveText();
+		Rotator.PopulateTextLabels(AllOptions);
+		Rotator.SetSelectedItem(0);
 	}
 
 	UFUNCTION(BlueprintOverride)
@@ -37,28 +43,13 @@ class UAS_SettingsListEntry_Carousel : UAS_SettingsListEntry_Base
 	UFUNCTION()
 	private void OnLeftButtonClicked()
 	{
-		ActiveOption--;
-		if (ActiveOption < 0)
-		{
-			ActiveOption = AllOptions.Num() - 1;
-		}
-		UpdateActiveText();
+		Rotator.ShiftTextLeft();
 	}
 
 	UFUNCTION()
 	private void OnRightButtonClicked()
 	{
-		ActiveOption++;
-		if (ActiveOption >= AllOptions.Num())
-		{
-			ActiveOption = 0;
-		}
-		UpdateActiveText();
-	}
-
-	private void UpdateActiveText()
-	{
-		ActiveOptionTextBlock.SetText(AllOptions[ActiveOption]);
+		Rotator.ShiftTextRight();
 	}
 
 	// Active index of the option active now
@@ -73,5 +64,5 @@ class UAS_SettingsListEntry_Carousel : UAS_SettingsListEntry_Base
 	private UButton RightButton;
 
 	UPROPERTY(BindWidget)
-	private UTextBlock ActiveOptionTextBlock;
+	private UCommonRotator Rotator;
 }

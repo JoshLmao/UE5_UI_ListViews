@@ -15,9 +15,9 @@ class UAS_MainMenuRootWidget : UCommonActivatableWidget
 	}
 
 	UFUNCTION(BlueprintOverride)
-	FEventReply OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent)
+	UWidget BP_GetDesiredFocusTarget() const
 	{
-		return FEventReply::Handled().SetUserFocus(ButtonsListView);
+		return ButtonsListView;
 	}
 
 	UFUNCTION()

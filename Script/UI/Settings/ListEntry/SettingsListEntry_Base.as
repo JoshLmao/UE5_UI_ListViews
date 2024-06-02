@@ -27,6 +27,22 @@ class UAS_SettingsListEntry_Base : UMyListEntryBase
 		TitleTextBlock.SetText(ListEntryTitle.GetTitle());
 	}
 
+	UFUNCTION(BlueprintOverride)
+	FEventReply OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent)
+	{
+		auto UserWidgetToFocus = Settings_GetFocusTarget();
+		if (IsValid(UserWidgetToFocus))
+		{
+			return FEventReply::Handled().SetUserFocus(UserWidgetToFocus);
+		}
+		return FEventReply::Unhandled();
+	}
+
+	UUserWidget Settings_GetFocusTarget()
+	{
+		return nullptr;
+	}
+
 	UPROPERTY(BindWidget)
 	private UTextBlock TitleTextBlock;
 }

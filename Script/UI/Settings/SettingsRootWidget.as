@@ -21,9 +21,17 @@ class UAS_SettingsRootWidget : UCommonActivatableWidget
 		HUDControl.OpenWidget(FGameplayTag::RequestGameplayTag(n"UI.MainMenu.Landing"));
 	}
 
+	UFUNCTION(BlueprintOverride)
+	UWidget BP_GetDesiredFocusTarget() const
+	{
+		return SettingsGeneralListView;
+	}
+
 	UPROPERTY(BindWidget)
 	private UAS_SettingsListView SettingsGeneralListView;
 
 	UPROPERTY(BindWIdget)
 	private UButton BackButton;
+
+	default bIsFocusable = true;
 }

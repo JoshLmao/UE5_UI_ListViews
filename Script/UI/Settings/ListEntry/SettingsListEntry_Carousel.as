@@ -6,12 +6,6 @@ UCLASS(Abstract)
 class UAS_SettingsListEntry_Carousel : UAS_SettingsListEntry_Base
 {
 	UFUNCTION(BlueprintOverride)
-	void PreConstruct(bool IsDesignTime)
-	{
-		Super::PreConstruct(IsDesignTime);
-	}
-
-	UFUNCTION(BlueprintOverride)
 	void OnInitialized()
 	{
 		LeftButton.OnClicked.AddUFunction(this, n"OnLeftButtonClicked");
@@ -51,8 +45,6 @@ class UAS_SettingsListEntry_Carousel : UAS_SettingsListEntry_Base
 		Rotator.ShiftTextRight();
 	}
 
-	// Active index of the option active now
-	private int ActiveOption = 0;
 	// All available options
 	private TArray<FText> AllOptions;
 

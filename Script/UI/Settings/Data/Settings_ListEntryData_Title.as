@@ -5,4 +5,5 @@
 UCLASS()
 class UAS_Settings_ListEntryData_Title : UAS_Settings_ListEntryData_Base
 {
+	default IsSelectable = false;
 }

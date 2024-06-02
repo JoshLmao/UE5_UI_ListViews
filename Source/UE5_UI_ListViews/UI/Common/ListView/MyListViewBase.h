@@ -21,4 +21,5 @@ protected:
 	UFUNCTION(ScriptCallable, BlueprintImplementableEvent, Meta = (BlueprintProtected = "true"))
 	TSubclassOf<UUserWidget> AS_GetItemDesiredEntryClass(UObject* Item);
 
+	bool OnIsSelectableOrNavigableInternal(UObject* SelectedItem) override;
 };

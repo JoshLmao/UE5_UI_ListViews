@@ -1,6 +1,6 @@
 event void OnEntryClicked(UObject Entry);
 
-class UAS_MainMenuListProp
+class UAS_MainMenuListProp : UListEntryDataBase
 {
 	UPROPERTY()
 	FText ButtonText;

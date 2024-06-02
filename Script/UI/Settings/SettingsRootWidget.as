@@ -18,7 +18,7 @@ class UAS_SettingsRootWidget : UCommonActivatableWidget
 	private void OnBackButtonClicked()
 	{
 		auto HUDControl = Cast<AMainMenuHUD>(GetOwningPlayer().GetHUD());
-		HUDControl.OpenWidget(FGameplayTag::RequestGameplayTag(n"UI.MainMenu.Landing"));
+		HUDControl.OpenWidget(GameplayTags::UI_MainMenu_Landing);
 	}
 
 	UFUNCTION(BlueprintOverride)

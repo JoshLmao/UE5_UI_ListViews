@@ -36,7 +36,7 @@ class UAS_MainMenuRootWidget : UCommonActivatableWidget
 	void OnSettingsClicked(UObject Item)
 	{
 		auto HUDControl = Cast<AMainMenuHUD>(GetOwningPlayer().GetHUD());
-		HUDControl.OpenWidget(FGameplayTag::RequestGameplayTag(n"UI.MainMenu.Settings"));
+		HUDControl.OpenWidget(GameplayTags::UI_MainMenu_Settings);
 	}
 
 	UFUNCTION()

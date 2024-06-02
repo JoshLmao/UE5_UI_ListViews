@@ -15,6 +15,7 @@ UUserWidget& UMyListViewBase::OnGenerateEntryWidgetInternal(UObject* Item, TSubc
 
 bool UMyListViewBase::OnIsSelectableOrNavigableInternal(UObject* SelectedItem)
 {
+	// Check the list entry data to determine if this is selectable
 	if (auto ListEntryBase = Cast<UListEntryDataBase>(SelectedItem))
 	{
 		return ListEntryBase->GetIsSelectable();

@@ -14,10 +14,6 @@ class UE5_UI_LISTVIEWS_API UMyListViewBase : public UListView
 protected:
 	virtual UUserWidget& OnGenerateEntryWidgetInternal(UObject* Item, TSubclassOf<UUserWidget> DesiredEntryClass, const TSharedRef<STableViewBase>& OwnerTable) override;
 
-	/*
-	UFUNCTION(ScriptCallable, BlueprintImplementableEvent, Meta = (BlueprintProtected = "true"))
-	UUserWidget* AS_OnGenerateEntryWidgetInternal(UObject* Item, TSubclassOf<UUserWidget> DesiredEntryClass);
-	*/
 	UFUNCTION(ScriptCallable, BlueprintImplementableEvent, Meta = (BlueprintProtected = "true"))
 	TSubclassOf<UUserWidget> AS_GetItemDesiredEntryClass(UObject* Item);
 

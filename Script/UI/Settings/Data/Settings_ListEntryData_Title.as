@@ -5,5 +5,6 @@
 UCLASS()
 class UAS_Settings_ListEntryData_Title : UAS_Settings_ListEntryData_Base
 {
+	// Override default value, title shouldn't be selectable
 	default IsSelectable = false;
 }

@@ -4,6 +4,9 @@
 
 #include "ListEntryDataBase.generated.h"
 
+/*
+ * Base entry data class, should be used for any list entry data class
+ */
 UCLASS(Abstract)
 class UListEntryDataBase : public UObject
 {
@@ -22,5 +25,6 @@ public:
 		bIsSelectable = InbIsSelectable;
 	}
 
+	// Able to check if this entry is selectable or not
 	bool bIsSelectable = true;
 };

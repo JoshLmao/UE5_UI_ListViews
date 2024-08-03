@@ -30,13 +30,13 @@ class UAS_MainMenuRootWidget : UCommonActivatableWidget
 	void OnMatchmakeClicked(UObject Item)
 	{
 		Print("OnMatchmakeClicked");
+		Util::GetMainMenuHUD(GetOwningPlayer()).OpenWidget(GameplayTags::UI_MainMenu_Matchmake);
 	}
 
 	UFUNCTION()
 	void OnSettingsClicked(UObject Item)
 	{
-		auto HUDControl = Cast<AMainMenuHUD>(GetOwningPlayer().GetHUD());
-		HUDControl.OpenWidget(GameplayTags::UI_MainMenu_Settings);
+		Util::GetMainMenuHUD(GetOwningPlayer()).OpenWidget(GameplayTags::UI_MainMenu_Settings);
 	}
 
 	UFUNCTION()

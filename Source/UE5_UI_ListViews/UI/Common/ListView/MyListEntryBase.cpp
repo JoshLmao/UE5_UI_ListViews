@@ -9,3 +9,13 @@ void UMyListEntryBase::NativeOnEntryReleased()
 {
 	AS_NativeOnEntryReleased();
 }
+
+bool UMyListEntryBase::AS_IsListItemSelected()
+{
+	return IsListItemSelected();
+}
+
+void UMyListEntryBase::NativeOnItemSelectionChanged(bool bIsSelected)
+{
+	AS_NativeOnItemSelectionChanged(bIsSelected);
+}

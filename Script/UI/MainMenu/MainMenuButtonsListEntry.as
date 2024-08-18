@@ -13,27 +13,24 @@ class UAS_MainMenuButtonsListEntry : UAS_MyListEntryBase
 		// TODO: Use UUserObjectListEntryLibrary::GetListItemObject to get prop instead of caching it?
 		Prop = ExpectedProp;
 
-		TextBlock.SetText(ExpectedProp.ButtonText);
+		Button.SetText(ExpectedProp.ButtonText);
 	}
 
 	UFUNCTION(BlueprintOverride)
 	void OnInitialized()
 	{
-		Button.OnClicked.AddUFunction(this, n"OnEntryButtonClicked");
+		Button.OnButtonBaseClicked.AddUFunction(this, n"OnEntryButtonClicked");
 	}
 
 	UFUNCTION()
-	private void OnEntryButtonClicked()
+	private void OnEntryButtonClicked(UCommonButtonBase InButton)
 	{
 		Print(GetName() + " clicked");
 		Prop.EntryClickedDelegate.Broadcast(Prop);
 	}
 
 	UPROPERTY(BindWidget)
-	private UButton Button;
-
-	UPROPERTY(BindWidget)
-	private UTextBlock TextBlock;
+	private UAS_MyProjectButton Button;
 
 	private UAS_MainMenuListProp Prop;
 }

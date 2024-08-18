@@ -49,4 +49,6 @@ class UAS_MainMenuRootWidget : UCommonActivatableWidget
 	private UAS_MainMenuButtonsListView ButtonsListView;
 
 	default bIsFocusable = true;
+	default bIsBackHandler = true;
+	default bIsBackActionDisplayedInActionBar = true;
 }

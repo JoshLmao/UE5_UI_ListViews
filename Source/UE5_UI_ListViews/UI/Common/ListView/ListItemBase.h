@@ -2,13 +2,13 @@
 
 #include <CoreMinimal.h>
 
-#include "ListEntryDataBase.generated.h"
+#include "ListItemBase.generated.h"
 
 /*
- * Base entry data class, should be used for any list entry data class
+ * Base List Item class, should be used for any list item class that pass data to a list entry
  */
 UCLASS(Abstract)
-class UListEntryDataBase : public UObject
+class UListItemBase : public UObject
 {
 	GENERATED_BODY()
 

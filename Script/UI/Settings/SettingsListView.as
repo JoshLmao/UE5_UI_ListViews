@@ -1,32 +1,6 @@
 UCLASS(Abstract)
 class UAS_SettingsListView : UAS_MyListViewBase
 {
-	UFUNCTION(BlueprintOverride)
-	TSubclassOf<UUserWidget> GetItemDesiredEntryClass(UObject Item)
-	{
-		/// Map all data UObject's to their UUserWidget implementation
-
-		auto IsTitle = Cast<UAS_Settings_ListEntryData_Title>(Item);
-		if (IsValid(IsTitle))
-		{
-			return TitleListEntryClass;
-		}
-
-		auto IsCarousel = Cast<UAS_Settings_ListEntryData_Carousel>(Item);
-		if (IsValid(IsCarousel))
-		{
-			return CarouselListEntryClass;
-		}
-
-		auto IsToggle = Cast<UAS_Settings_ListEntryData_Toggle>(Item);
-		if (IsValid(IsToggle))
-		{
-			return ToggleListEntryClass;
-		}
-
-		return UnknownListEntryClass; // Given list item doesn't have a configured ListEntry
-	}
-
 	// Default list entry to use when miss-configured data entry
 	UPROPERTY(EditDefaultsOnly)
 	private TSubclassOf<UUserWidget> UnknownListEntryClass;

@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UE5_UI_ListViews/UI/Common/ListView/ListEntryDataBase.h"
+#include "UE5_UI_ListViews/UI/Common/ListView/ListItemBase.h"
 #include "MainMenuListItem.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class UE5_UI_LISTVIEWS_API UMainMenuListItem : public UListEntryDataBase
+class UE5_UI_LISTVIEWS_API UMainMenuListItem : public UListItemBase
 {
 	GENERATED_BODY()
 

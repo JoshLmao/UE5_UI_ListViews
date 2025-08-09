@@ -20,8 +20,16 @@ protected:
 	void NativeOnListItemObjectSet(UObject* ListItemObject) override;
 	void NativeOnEntryReleased() override;
 
+	FReply NativeOnFocusReceived(const FGeometry& InGeometry, const FFocusEvent& InFocusEvent) override;
+
 	void NativeOnMouseEnter(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent) override;
 	void NativeOnMouseLeave(const FPointerEvent& InMouseEvent) override;
+
+	virtual UWidget* Settings_GetFocusTarget()
+	{
+		// each inheriting ListEntry should override and specify what to focus
+		return nullptr;
+	}
 
 	UPROPERTY(meta = (BindWidget))
 	class UCommonTextBlock* TitleTextBlock;

@@ -36,6 +36,17 @@ void USettingsListEntryBase::NativeOnEntryReleased()
 	StopAllAnimations();
 }
 
+FReply USettingsListEntryBase::NativeOnFocusReceived(const FGeometry& InGeometry, const FFocusEvent& InFocusEvent)
+{
+	// Get child's UWidget to direct focus onto
+	UWidget* UserWidgetToFocus = Settings_GetFocusTarget();
+	if (IsValid(UserWidgetToFocus))
+	{
+		return FReply::Handled().SetUserFocus(UserWidgetToFocus->TakeWidget());
+	}
+	return FReply::Unhandled();
+}
+
 void USettingsListEntryBase::NativeOnMouseEnter(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
 {
 	Super::NativeOnMouseEnter(InGeometry, InMouseEvent);

@@ -4,6 +4,7 @@
 
 #include "CommonTextBlock.h"
 #include "Components/Button.h"
+#include "UE5_UI_ListViews/UI/Scenario/Settings/ListItem/SettingsListItem_Toggle.h"
 
 void USettingsListEntry_Toggle::NativeOnInitialized()
 {
@@ -15,15 +16,13 @@ void USettingsListEntry_Toggle::NativeOnListItemObjectSet(UObject* ListItemObjec
 {
 	Super::NativeOnListItemObjectSet(ListItemObject);
 
-	/*
-	auto ToggleData = Cast<USettingsListEntry_Toggle>(ListItemObject);
+	auto* ToggleData = Cast<USettingsListItem_Toggle>(ListItemObject);
 	if (!IsValid(ToggleData))
 	{
 		return;
 	}
 
-	SetStatus(ToggleData.GetToggleStatus());
-	*/
+	SetStatus(ToggleData->GetToggleStatus());
 }
 
 UWidget* USettingsListEntry_Toggle::Settings_GetFocusTarget()

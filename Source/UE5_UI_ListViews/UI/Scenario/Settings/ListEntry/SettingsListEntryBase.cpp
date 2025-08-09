@@ -21,7 +21,7 @@ void USettingsListEntryBase::NativeOnListItemObjectSet(UObject* ListItemObject)
 	Super::NativeOnListItemObjectSet(ListItemObject);
 
 	auto* SettingsListEntryBase = Cast<USettingsListItemBase>(ListItemObject);
-	if (IsValid(SettingsListEntryBase))
+	if (!IsValid(SettingsListEntryBase))
 	{
 		return;
 	}

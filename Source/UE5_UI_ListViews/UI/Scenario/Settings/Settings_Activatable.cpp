@@ -2,6 +2,7 @@
 
 #include "Settings_Activatable.h"
 
+#include "Registry/SettingsRegistry.h"
 #include "UE5_UI_ListViews/Setup/MainMenuHUD.h"
 #include "UE5_UI_ListViews/UI/Common/Button/TextButton.h"
 #include "UE5_UI_ListViews/UI/Common/ListView/MyListViewBase.h"
@@ -21,8 +22,7 @@ void USettings_Activatable::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	TArray<UObject*> AllData;
-	// TODO: populate from registry
+	const TArray<UObject*> AllData = USettingsRegistry::BuildSettings();
 	ListView->SetListItems(AllData);
 }
 

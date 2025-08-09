@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 public class UE5_UI_ListViewsTarget : TargetRules
 {
-	public UE5_UI_ListViewsTarget( TargetInfo Target) : base(Target)
+	public UE5_UI_ListViewsTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
-		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_1;
+		DefaultBuildSettings = BuildSettingsVersion.V5;
+		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_5;
 		ExtraModuleNames.Add("UE5_UI_ListViews");
 	}
 }

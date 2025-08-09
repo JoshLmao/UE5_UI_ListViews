@@ -12,9 +12,8 @@ class UE5_UI_LISTVIEWS_API AMainMenuHUD : public AHUD
 	GENERATED_BODY()
 
 public:
-	void BeginPlay() override;
+	virtual void BeginPlay() override;
 
-	UFUNCTION(ScriptCallable)
 	void OpenWidget(FGameplayTag WidgetTag);
 
 protected:
@@ -22,5 +21,6 @@ protected:
 	TMap<FGameplayTag, TSubclassOf<class UCommonActivatableWidget>> UIConfig;
 
 private:
+	UPROPERTY()
 	class UCommonActivatableWidget* ActiveActivatable;
 };

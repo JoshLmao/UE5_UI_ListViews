@@ -13,13 +13,11 @@ class UListItemBase : public UObject
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(ScriptCallable)
-	bool GetIsSelectable()
+	bool GetIsSelectable() const
 	{
 		return bIsSelectable;
 	}
 
-	UFUNCTION(ScriptCallable)
 	void SetIsSelectable(bool InbIsSelectable)
 	{
 		bIsSelectable = InbIsSelectable;

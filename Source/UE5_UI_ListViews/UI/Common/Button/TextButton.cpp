@@ -4,13 +4,15 @@
 
 #include "CommonTextBlock.h"
 
-void UTextButton::SetText(const FText& InText) const
+void UTextButton::SetText(const FText& InText)
 {
-	TextBlock->SetText(InText);
+	Text = InText;
+	TextBlock->SetText(Text);
 }
 
 void UTextButton::NativePreConstruct()
 {
 	Super::NativePreConstruct();
+	TextBlock->SetText(Text);
 	TextBlock->SetAutoWrapText(true);
 }

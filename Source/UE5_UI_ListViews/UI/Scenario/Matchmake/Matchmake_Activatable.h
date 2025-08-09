@@ -37,7 +37,9 @@ public:
 	UMatchmake_Activatable();
 
 protected:
+	void NativeOnInitialized() override;
 	void NativePreConstruct() override;
+	void NativeConstruct() override;
 	bool NativeOnHandleBackAction() override;
 
 	FReply NativeOnFocusReceived(const FGeometry& InGeometry, const FFocusEvent& InFocusEvent) override;

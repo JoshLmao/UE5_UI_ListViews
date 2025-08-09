@@ -15,14 +15,23 @@ UMatchmake_Activatable::UMatchmake_Activatable()
 	bIsBackActionDisplayedInActionBar = true;
 }
 
+void UMatchmake_Activatable::NativeOnInitialized()
+{
+	Super::NativeOnInitialized();
+	ListView->OnItemSelectionChanged().AddUObject(this, &ThisClass::OnListViewItemSelectionChanged);
+}
+
 void UMatchmake_Activatable::NativePreConstruct()
 {
 	Super::NativePreConstruct();
 
 	TitleTextBlock->SetText(FText::FromString("Select Matchmaking Region"));
-
 	ListView->SetSelectionMode(ESelectionMode::Type::Single);
-	ListView->OnItemSelectionChanged().AddUObject(this, &ThisClass::OnListViewItemSelectionChanged);
+}
+
+void UMatchmake_Activatable::NativeConstruct()
+{
+	Super::NativeConstruct();
 
 	TArray<UObject*> AllOptions;
 	AllOptions.Add(USimpleListItem::Create(this, TEXT("euro"), FText::FromString("Europe")));
@@ -32,6 +41,7 @@ void UMatchmake_Activatable::NativePreConstruct()
 	AllOptions.Add(USimpleListItem::Create(this, TEXT("asia"), FText::FromString("Asia")));
 	ListView->SetListItems(AllOptions);
 
+	// Obtain data for the current selected region and make it selected and move focus to it
 	FName CurrentRegion = Cast<UMyGameInstance>(GetGameInstance())->GetMatchmakeRegion();
 	for (const auto ListItem : AllOptions)
 	{

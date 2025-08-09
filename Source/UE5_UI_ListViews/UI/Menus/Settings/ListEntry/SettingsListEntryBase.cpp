@@ -4,7 +4,7 @@
 
 #include "CommonTextBlock.h"
 #include "Animation/WidgetAnimation.h"
-#include "UE5_UI_ListViews/UI/Scenario/Settings/ListItem/SettingsListItemBase.h"
+#include "UE5_UI_ListViews/UI/Menus/Settings/ListItem/SettingsListItemBase.h"
 
 void USettingsListEntryBase::NativePreConstruct()
 {

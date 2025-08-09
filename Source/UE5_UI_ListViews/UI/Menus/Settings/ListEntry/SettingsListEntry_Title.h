@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UE5_UI_ListViews/UI/Scenario/Settings/ListEntry/SettingsListEntryBase.h"
+#include "UE5_UI_ListViews/UI/Menus/Settings/ListEntry/SettingsListEntryBase.h"
 #include "SettingsListEntry_Title.generated.h"
 
 /**

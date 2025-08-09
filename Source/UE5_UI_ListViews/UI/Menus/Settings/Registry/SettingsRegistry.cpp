@@ -2,9 +2,9 @@
 
 #include "SettingsRegistry.h"
 
-#include "UE5_UI_ListViews/UI/Scenario/Settings/ListItem/SettingsListItem_Carousel.h"
-#include "UE5_UI_ListViews/UI/Scenario/Settings/ListItem/SettingsListItem_Title.h"
-#include "UE5_UI_ListViews/UI/Scenario/Settings/ListItem/SettingsListItem_Toggle.h"
+#include "UE5_UI_ListViews/UI/Menus/Settings/ListItem/SettingsListItem_Carousel.h"
+#include "UE5_UI_ListViews/UI/Menus/Settings/ListItem/SettingsListItem_Title.h"
+#include "UE5_UI_ListViews/UI/Menus/Settings/ListItem/SettingsListItem_Toggle.h"
 
 TArray<UObject*> USettingsRegistry::BuildSettings()
 {

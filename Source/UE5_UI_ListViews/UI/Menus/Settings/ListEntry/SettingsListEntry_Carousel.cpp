@@ -4,7 +4,7 @@
 
 #include "CommonRotator.h"
 #include "Components/Button.h"
-#include "UE5_UI_ListViews/UI/Scenario/Settings/ListItem/SettingsListItem_Carousel.h"
+#include "UE5_UI_ListViews/UI/Menus/Settings/ListItem/SettingsListItem_Carousel.h"
 
 void USettingsListEntry_Carousel::NativeOnInitialized()
 {

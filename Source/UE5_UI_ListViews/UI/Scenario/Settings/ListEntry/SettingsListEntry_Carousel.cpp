@@ -26,13 +26,13 @@ void USettingsListEntry_Carousel::NativeOnListItemObjectSet(UObject* ListItemObj
 {
 	Super::NativeOnListItemObjectSet(ListItemObject);
 
-	auto CarouselData = Cast<USettingsListItem_Carousel>(ListItemObject);
+	auto* CarouselData = Cast<USettingsListItem_Carousel>(ListItemObject);
 	if (!IsValid(CarouselData))
 	{
 		return;
 	}
 
-	//AllOptions = CarouselData.GetOptions();
+	auto AllOptions = CarouselData->GetOptions();
 	Rotator->PopulateTextLabels(AllOptions);
 	Rotator->SetSelectedItem(0);
 }

@@ -28,9 +28,6 @@ private:
 	UFUNCTION()
 	void OnRightButtonClicked();
 
-	// All available options
-	TArray<FText> AllOptions;
-
 	UPROPERTY(meta = (BindWidget))
 	class UButton* LeftButton;
 

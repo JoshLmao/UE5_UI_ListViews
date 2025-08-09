@@ -13,13 +13,15 @@ class USimpleListItem : public UListItemBase
 	GENERATED_BODY()
 
 public:
-	static USimpleListItem* Create(UObject* Owner, const FText& InText)
+	static USimpleListItem* Create(UObject* Owner, const FName& RegionId, const FText& InText)
 	{
 		auto* ListItem = NewObject<USimpleListItem>(Owner);
+		ListItem->Id = RegionId;
 		ListItem->Text = InText;
 		return ListItem;
 	}
 
+	FName Id;
 	FText Text;
 };
 
@@ -41,6 +43,8 @@ protected:
 	FReply NativeOnFocusReceived(const FGeometry& InGeometry, const FFocusEvent& InFocusEvent) override;
 
 private:
+	void OnListViewItemSelectionChanged(UObject* ListItem);
+
 	UPROPERTY(meta = (BindWidget))
 	class UCommonTextBlock* TitleTextBlock;
 

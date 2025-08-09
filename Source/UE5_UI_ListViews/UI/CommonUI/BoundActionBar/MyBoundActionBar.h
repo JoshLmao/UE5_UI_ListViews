@@ -1,10 +1,8 @@
 #pragma once
 
 #include <CoreMinimal.h>
-
-#include "MyBoundActionBar.generated.h"
-
 #include "Input/CommonBoundActionBar.h"
+#include "MyBoundActionBar.generated.h"
 
 UCLASS()
 class UMyBoundActionBar : public UCommonBoundActionBar

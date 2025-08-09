@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Abstract)
 class UE5_UI_LISTVIEWS_API USettingsListEntryBase : public UMyListEntryBase
 {
 	GENERATED_BODY()

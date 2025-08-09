@@ -21,14 +21,10 @@ protected:
 	void NativeOnInitialized() override;
 	void NativeConstruct() override;
 
+	bool NativeOnHandleBackAction() override;
 	UWidget* NativeGetDesiredFocusTarget() const override;
 
 private:
-	void OnButtonBackClicked() const;
-
 	UPROPERTY(meta = (BindWidget))
 	class UMyListViewBase* ListView;
-
-	UPROPERTY(meta = (BindWidget))
-	class UTextButton* BackButton;
 };

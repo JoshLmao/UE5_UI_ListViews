@@ -4,18 +4,18 @@
 
 #include "Registry/SettingsRegistry.h"
 #include "UE5_UI_ListViews/Setup/MainMenuHUD.h"
-#include "UE5_UI_ListViews/UI/Common/Button/TextButton.h"
 #include "UE5_UI_ListViews/UI/Common/ListView/MyListViewBase.h"
 
 USettings_Activatable::USettings_Activatable()
 {
 	SetIsFocusable(true);
+	bIsBackHandler = true;
+	bIsBackActionDisplayedInActionBar = true;
 }
 
 void USettings_Activatable::NativeOnInitialized()
 {
 	Super::NativeOnInitialized();
-	BackButton->OnClicked().AddUObject(this, &ThisClass::OnButtonBackClicked);
 }
 
 void USettings_Activatable::NativeConstruct()
@@ -26,13 +26,14 @@ void USettings_Activatable::NativeConstruct()
 	ListView->SetListItems(AllData);
 }
 
-UWidget* USettings_Activatable::NativeGetDesiredFocusTarget() const
-{
-	return ListView;
-}
-
-void USettings_Activatable::OnButtonBackClicked() const
+bool USettings_Activatable::NativeOnHandleBackAction()
 {
 	auto* HUDControl = Cast<AMainMenuHUD>(GetOwningPlayer()->GetHUD());
 	HUDControl->OpenWidget(FGameplayTag::RequestGameplayTag("UI.MainMenu.Landing"));
+	return true;
+}
+
+UWidget* USettings_Activatable::NativeGetDesiredFocusTarget() const
+{
+	return ListView;
 }

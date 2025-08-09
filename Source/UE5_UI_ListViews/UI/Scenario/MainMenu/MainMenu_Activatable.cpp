@@ -10,8 +10,6 @@
 UMainMenu_Activatable::UMainMenu_Activatable()
 {
 	SetIsFocusable(true);
-	bIsBackHandler = true;
-	bIsBackActionDisplayedInActionBar = true;
 }
 
 void UMainMenu_Activatable::NativeConstruct()

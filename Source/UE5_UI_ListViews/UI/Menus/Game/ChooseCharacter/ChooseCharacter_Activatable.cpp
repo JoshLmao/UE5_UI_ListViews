@@ -25,11 +25,12 @@ void UChooseCharacter_Activatable::NativeConstruct()
 	Super::NativeConstruct();
 
 	TArray<UObject*> AllData;
-	for (int i = 0; i < 20; i++)
+	for (double i = 0; i < 20; i++)
 	{
-		FName Id = FName(*FString::Printf(TEXT("random-id-%d"), i));
-		FText CharName = FText::Format(FText::FromString(TEXT("{0}{1}")), FText::FromString("Character "), FText::AsNumber(i));
-		AllData.Add(UCharacterListItem::Create(this, Id, CharName));
+		const FName Id = FName(*FString::Printf(TEXT("random-id-%d"), i));
+		const FText Name = FText::Format(FText::FromString(TEXT("{0}{1}")), FText::FromString("Character "), FText::AsNumber(i));
+		const int32 Level = FMath::Abs(FMath::Sin(i) * 100); // Some random number
+		AllData.Add(UCharacterListItem::Create(this, Id, Name, Level));
 	}
 	ListView->SetListItems(AllData);
 }

@@ -15,14 +15,16 @@ class UE5_UI_LISTVIEWS_API UCharacterListItem : public UListItemBase
 	GENERATED_BODY()
 
 public:
-	static UCharacterListItem* Create(UObject* Owner, const FName& InId, const FText& InName)
+	static UCharacterListItem* Create(UObject* Owner, const FName& InId, const FText& InName, int InLevel)
 	{
 		auto* ListItem = NewObject<UCharacterListItem>(Owner);
 		ListItem->Id = InId;
 		ListItem->Name = InName;
+		ListItem->Level = InLevel;
 		return ListItem;
 	}
 
-	FText Name;
+	FText Name = FText::FromString("unnamed");
 	FName Id;
+	int Level = 0;
 };

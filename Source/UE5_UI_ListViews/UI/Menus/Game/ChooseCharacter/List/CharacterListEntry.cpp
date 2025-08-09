@@ -2,13 +2,24 @@
 
 #include "CharacterListEntry.h"
 
+#include "CharacterListItem.h"
+#include "CommonTextBlock.h"
+
 void UCharacterListEntry::NativeOnListItemObjectSet(UObject* ListItemObject)
 {
 	Super::NativeOnListItemObjectSet(ListItemObject);
-	UpdateWidget(ListItemObject);
+
+	auto* CharacterListItem = Cast<UCharacterListItem>(ListItemObject);
+	if (!IsValid(CharacterListItem))
+	{
+		return;
+	}
+
+	UpdateWidget(CharacterListItem);
 }
 
-void UCharacterListEntry::UpdateWidget(const UObject* ListItem)
+void UCharacterListEntry::UpdateWidget(const UCharacterListItem* ListItem) const
 {
-	// todo connect data to bindings
+	NameTextBlock->SetText(ListItem->Name);
+	LevelTextBlock->SetText(FText::AsNumber(ListItem->Level));
 }

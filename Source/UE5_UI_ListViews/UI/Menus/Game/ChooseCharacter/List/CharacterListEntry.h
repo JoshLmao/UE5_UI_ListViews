@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "CharacterListItem.h"
 #include "UE5_UI_ListViews/UI/Common/ListView/MyListEntryBase.h"
 #include "CharacterListEntry.generated.h"
 
@@ -18,7 +19,7 @@ protected:
 	void NativeOnListItemObjectSet(UObject* ListItemObject) override;
 
 private:
-	void UpdateWidget(const UObject* ListItem);
+	void UpdateWidget(const UCharacterListItem* ListItem) const;
 
 	UPROPERTY(meta = (BindWidget))
 	class UCommonTextBlock* NameTextBlock;

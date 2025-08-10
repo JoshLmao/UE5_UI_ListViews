@@ -26,9 +26,14 @@ protected:
 	bool NativeOnHandleBackAction() override;
 
 private:
+	void OnCreateNewCharacter();
+
 	UFUNCTION()
 	void OnDeleteCharacter(UObject* ListItem);
 
 	UPROPERTY(meta = (BindWidget))
 	class UMyListViewBase* ListView;
+
+	UPROPERTY(meta = (BindWidget))
+	class UTextButton* CreateCharacterButton;
 };

@@ -6,6 +6,7 @@
 
 #include <GameplayTagContainer.h>
 #include "UE5_UI_ListViews/Setup/MainMenuHUD.h"
+#include "UE5_UI_ListViews/UI/Common/Button/TextButton.h"
 #include "UE5_UI_ListViews/UI/Common/ListView/MyListViewBase.h"
 
 UChooseCharacter_Activatable::UChooseCharacter_Activatable()
@@ -18,6 +19,7 @@ UChooseCharacter_Activatable::UChooseCharacter_Activatable()
 void UChooseCharacter_Activatable::NativeOnInitialized()
 {
 	Super::NativeOnInitialized();
+	CreateCharacterButton->OnClicked().AddUObject(this, &ThisClass::OnCreateNewCharacter);
 }
 
 void UChooseCharacter_Activatable::NativePreConstruct()
@@ -54,6 +56,20 @@ bool UChooseCharacter_Activatable::NativeOnHandleBackAction()
 	auto* HUDControl = Cast<AMainMenuHUD>(GetOwningPlayer()->GetHUD());
 	HUDControl->OpenWidget(FGameplayTag::RequestGameplayTag("UI.MainMenu.Landing"));
 	return true;
+}
+
+void UChooseCharacter_Activatable::OnCreateNewCharacter()
+{
+	const int32 EntryIndex = ListView->GetNumItems();
+	const FName Id = FName(*FString::Printf(TEXT("random-id-%d"), EntryIndex));
+	const FText Name = FText::Format(FText::FromString(TEXT("{0}{1}")), FText::FromString("Character "), FText::AsNumber(EntryIndex));
+
+	// Create and add to ListView
+	auto* ListItem = UCharacterListItem::Create(this, Id, Name, 1);
+	ListView->AddItem(ListItem);
+
+	// Navigate to the list item we just created and added
+	ListView->RequestNavigateToItem(ListItem);
 }
 
 void UChooseCharacter_Activatable::OnDeleteCharacter(UObject* ListItem)

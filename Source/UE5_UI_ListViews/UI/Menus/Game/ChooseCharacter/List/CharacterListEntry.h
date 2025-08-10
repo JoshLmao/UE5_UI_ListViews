@@ -16,14 +16,23 @@ class UE5_UI_LISTVIEWS_API UCharacterListEntry : public UMyListEntryBase
 	GENERATED_BODY()
 
 protected:
+	void NativeOnInitialized() override;
 	void NativeOnListItemObjectSet(UObject* ListItemObject) override;
 
 private:
 	void UpdateWidget(const UCharacterListItem* ListItem) const;
+
+	void OnDeleteCharacterClicked();
 
 	UPROPERTY(meta = (BindWidget))
 	class UCommonTextBlock* NameTextBlock;
 
 	UPROPERTY(meta = (BindWidget))
 	class UCommonTextBlock* LevelTextBlock;
+
+	UPROPERTY(meta = (BindWidget))
+	class UTextButton* DeleteCharacterButton;
+
+	UPROPERTY()
+	class UCharacterListItem* CharacterListItem;
 };

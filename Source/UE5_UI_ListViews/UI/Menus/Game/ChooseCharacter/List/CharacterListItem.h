@@ -15,9 +15,9 @@ class UE5_UI_LISTVIEWS_API UCharacterListItem : public UListItemBase
 	GENERATED_BODY()
 
 public:
-	static UCharacterListItem* Create(UObject* Owner, const FName& InId, const FText& InName, int InLevel)
+	static UCharacterListItem* Create(UObject* Owner, const FName& InId, const FText& InName, int32 InLevel)
 	{
-		auto* ListItem = NewObject<UCharacterListItem>(Owner);
+		auto* ListItem = NewObject<UCharacterListItem>();
 		ListItem->Id = InId;
 		ListItem->Name = InName;
 		ListItem->Level = InLevel;
@@ -27,4 +27,7 @@ public:
 	FText Name = FText::FromString("unnamed");
 	FName Id;
 	int Level = 0;
+
+	DECLARE_DELEGATE_OneParam(FOnDeleteCharacter, UObject* /*ListItem*/);
+	FOnDeleteCharacter OnDeleteCharacter;
 };

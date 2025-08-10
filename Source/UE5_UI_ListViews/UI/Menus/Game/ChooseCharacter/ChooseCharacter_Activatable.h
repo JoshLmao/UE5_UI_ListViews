@@ -18,6 +18,7 @@ public:
 	UChooseCharacter_Activatable();
 
 protected:
+	void NativeOnInitialized() override;
 	void NativePreConstruct() override;
 	void NativeConstruct() override;
 	FReply NativeOnFocusReceived(const FGeometry& InGeometry, const FFocusEvent& InFocusEvent) override;
@@ -25,6 +26,9 @@ protected:
 	bool NativeOnHandleBackAction() override;
 
 private:
+	UFUNCTION()
+	void OnDeleteCharacter(UObject* ListItem);
+
 	UPROPERTY(meta = (BindWidget))
 	class UMyListViewBase* ListView;
 };

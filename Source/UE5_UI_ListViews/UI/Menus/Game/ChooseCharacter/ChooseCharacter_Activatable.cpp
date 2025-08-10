@@ -15,6 +15,11 @@ UChooseCharacter_Activatable::UChooseCharacter_Activatable()
 	bIsBackActionDisplayedInActionBar = true;
 }
 
+void UChooseCharacter_Activatable::NativeOnInitialized()
+{
+	Super::NativeOnInitialized();
+}
+
 void UChooseCharacter_Activatable::NativePreConstruct()
 {
 	Super::NativePreConstruct();
@@ -30,7 +35,9 @@ void UChooseCharacter_Activatable::NativeConstruct()
 		const FName Id = FName(*FString::Printf(TEXT("random-id-%d"), i));
 		const FText Name = FText::Format(FText::FromString(TEXT("{0}{1}")), FText::FromString("Character "), FText::AsNumber(i));
 		const int32 Level = FMath::Abs(FMath::Sin(i) * 100); // Some random number
-		AllData.Add(UCharacterListItem::Create(this, Id, Name, Level));
+		auto* ListItem = UCharacterListItem::Create(this, Id, Name, Level);
+		ListItem->OnDeleteCharacter.BindUObject(this, &ThisClass::OnDeleteCharacter);
+		AllData.Add(ListItem);
 	}
 	ListView->SetListItems(AllData);
 }
@@ -47,4 +54,9 @@ bool UChooseCharacter_Activatable::NativeOnHandleBackAction()
 	auto* HUDControl = Cast<AMainMenuHUD>(GetOwningPlayer()->GetHUD());
 	HUDControl->OpenWidget(FGameplayTag::RequestGameplayTag("UI.MainMenu.Landing"));
 	return true;
+}
+
+void UChooseCharacter_Activatable::OnDeleteCharacter(UObject* ListItem)
+{
+	ListView->RemoveItem(ListItem);
 }

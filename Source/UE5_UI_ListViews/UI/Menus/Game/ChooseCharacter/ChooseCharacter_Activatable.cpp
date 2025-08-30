@@ -66,6 +66,7 @@ void UChooseCharacter_Activatable::OnCreateNewCharacter()
 
 	// Create and add to ListView
 	auto* ListItem = UCharacterListItem::Create(this, Id, Name, 1);
+	ListItem->OnDeleteCharacter.BindUObject(this, &ThisClass::OnDeleteCharacter);
 	ListView->AddItem(ListItem);
 
 	// Navigate to the list item we just created and added
@@ -74,5 +75,10 @@ void UChooseCharacter_Activatable::OnCreateNewCharacter()
 
 void UChooseCharacter_Activatable::OnDeleteCharacter(UObject* ListItem)
 {
+	if (auto* CharacterListItem = Cast<UCharacterListItem>(ListItem))
+	{
+		CharacterListItem->OnDeleteCharacter.Unbind();
+	}
+
 	ListView->RemoveItem(ListItem);
 }

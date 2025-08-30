@@ -3,9 +3,11 @@
 #include "MainMenu_Activatable.h"
 
 #include "GameplayTagContainer.h"
+#include "OnlineSubsystemUtils.h"
 #include "List/MainMenuListItem.h"
 #include "UE5_UI_ListViews/Setup/MainMenuHUD.h"
 #include "UE5_UI_ListViews/UI/Common/ListView/MyListViewBase.h"
+#include "UE5_UI_ListViews/UI/Menus/Game/GameFlowSubsystem.h"
 
 UMainMenu_Activatable::UMainMenu_Activatable()
 {
@@ -34,8 +36,8 @@ void UMainMenu_Activatable::OnPlayClicked(const UObject* Item)
 {
 	UE_LOG(LogTemp, Log, TEXT("OnPlayClicked"));
 
-	auto* HUD = Cast<AMainMenuHUD>(GetPlayerContext().GetPlayerController()->GetHUD());
-	HUD->OpenWidget(FGameplayTag::RequestGameplayTag(FName("UI.Game.ChooseCharacter")));
+	UGameFlowSubsystem* Subsystem = GetWorld()->GetSubsystem<UGameFlowSubsystem>();
+	Subsystem->StartGame();
 }
 
 void UMainMenu_Activatable::OnMatchmakeClicked(const UObject* Item)

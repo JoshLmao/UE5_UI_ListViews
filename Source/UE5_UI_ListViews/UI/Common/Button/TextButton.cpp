@@ -14,5 +14,4 @@ void UTextButton::NativePreConstruct()
 {
 	Super::NativePreConstruct();
 	TextBlock->SetText(Text);
-	TextBlock->SetAutoWrapText(true);
 }

@@ -33,6 +33,9 @@ UWidget* UMainMenu_Activatable::NativeGetDesiredFocusTarget() const
 void UMainMenu_Activatable::OnPlayClicked(const UObject* Item)
 {
 	UE_LOG(LogTemp, Log, TEXT("OnPlayClicked"));
+
+	auto* HUD = Cast<AMainMenuHUD>(GetPlayerContext().GetPlayerController()->GetHUD());
+	HUD->OpenWidget(FGameplayTag::RequestGameplayTag(FName("UI.Game.ChooseCharacter")));
 }
 
 void UMainMenu_Activatable::OnMatchmakeClicked(const UObject* Item)

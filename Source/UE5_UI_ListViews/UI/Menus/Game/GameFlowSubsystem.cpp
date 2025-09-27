@@ -10,7 +10,7 @@ void UGameFlowSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	Super::Initialize(Collection);
 
 	GameWidgetOrder.Add(FGameplayTag::RequestGameplayTag("UI.Game.ChooseCharacter"));
-	GameWidgetOrder.Add(FGameplayTag::RequestGameplayTag("UI.Game.ChooseCharacter")); // TODO: Make new game and replace. Have two games for testing
+	GameWidgetOrder.Add(FGameplayTag::RequestGameplayTag("UI.Game.BuyFruits"));
 
 	CurrentGameWidgetIndex = 0;
 }

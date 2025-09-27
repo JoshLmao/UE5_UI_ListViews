@@ -17,7 +17,7 @@ class UE5_UI_LISTVIEWS_API UCharacterListItem : public UListItemBase
 public:
 	static UCharacterListItem* Create(UObject* Owner, const FName& InId, const FText& InName, int32 InLevel)
 	{
-		auto* ListItem = NewObject<UCharacterListItem>();
+		auto* ListItem = NewObject<UCharacterListItem>(Owner);
 		ListItem->Id = InId;
 		ListItem->Name = InName;
 		ListItem->Level = InLevel;

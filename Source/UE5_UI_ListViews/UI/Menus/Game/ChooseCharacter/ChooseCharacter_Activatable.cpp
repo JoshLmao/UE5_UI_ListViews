@@ -31,14 +31,11 @@ void UChooseCharacter_Activatable::NativeConstruct()
 {
 	Super::NativeConstruct();
 
+	// Create and populate a set amount of ListItems for initial data
 	TArray<UObject*> AllData;
 	for (double i = 0; i < 20; i++)
 	{
-		const FName Id = FName(*FString::Printf(TEXT("random-id-%d"), i));
-		const FText Name = FText::Format(FText::FromString(TEXT("{0}{1}")), FText::FromString("Character "), FText::AsNumber(i));
-		const int32 Level = FMath::Abs(FMath::Sin(i) * 100); // Some random number
-		auto* ListItem = UCharacterListItem::Create(this, Id, Name, Level);
-		ListItem->OnDeleteCharacter.BindUObject(this, &ThisClass::OnDeleteCharacter);
+		auto* ListItem = CreateListItem(i);
 		AllData.Add(ListItem);
 	}
 	ListView->SetListItems(AllData);
@@ -60,17 +57,23 @@ bool UChooseCharacter_Activatable::NativeOnHandleBackAction()
 
 void UChooseCharacter_Activatable::OnCreateNewCharacter()
 {
+	// Add new element to bottom of list
 	const int32 EntryIndex = ListView->GetNumItems();
-	const FName Id = FName(*FString::Printf(TEXT("random-id-%d"), EntryIndex));
-	const FText Name = FText::Format(FText::FromString(TEXT("{0}{1}")), FText::FromString("Character "), FText::AsNumber(EntryIndex));
-
-	// Create and add to ListView
-	auto* ListItem = UCharacterListItem::Create(this, Id, Name, 1);
-	ListItem->OnDeleteCharacter.BindUObject(this, &ThisClass::OnDeleteCharacter);
+	UCharacterListItem* ListItem = CreateListItem(EntryIndex);
 	ListView->AddItem(ListItem);
 
 	// Navigate to the list item we just created and added
 	ListView->RequestNavigateToItem(ListItem);
+}
+
+UCharacterListItem* UChooseCharacter_Activatable::CreateListItem(int EntryIndex)
+{
+	const FName Id = FName(*FString::Printf(TEXT("random-id-%d"), EntryIndex));
+	const FText Name = FText::Format(FText::FromString(TEXT("{0}{1}")), FText::FromString("Character "), FText::AsNumber(EntryIndex));
+
+	auto* ListItem = UCharacterListItem::Create(this, Id, Name, 1);
+	ListItem->OnDeleteCharacter.BindUObject(this, &ThisClass::OnDeleteCharacter);
+	return ListItem;
 }
 
 void UChooseCharacter_Activatable::OnDeleteCharacter(UObject* ListItem)

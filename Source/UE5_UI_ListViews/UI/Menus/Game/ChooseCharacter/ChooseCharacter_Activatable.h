@@ -7,7 +7,11 @@
 #include "ChooseCharacter_Activatable.generated.h"
 
 /**
+ * Method 1: The most basic and common to use a ListView.
  * 
+ * Populate a UCLASS object with static data once at start.
+ * Handles removing specific elements and adding new elements to end.
+ * Able to handle elements with buttons to trigger actions, like Delete
  */
 UCLASS(Abstract)
 class UE5_UI_LISTVIEWS_API UChooseCharacter_Activatable : public UCommonActivatableWidget
@@ -27,6 +31,7 @@ protected:
 
 private:
 	void OnCreateNewCharacter();
+	UCharacterListItem* CreateListItem(int ElementIndex);
 
 	UFUNCTION()
 	void OnDeleteCharacter(UObject* ListItem);
